@@ -72,26 +72,28 @@
     </div>
 
     <script>
-        // AI Voice (Text to Speech) Function
+        // AI Voice Function (No external music file needed)
         function startSurprise() {
-            // 1. Voice logic
-            const message = new SpeechSynthesisUtterance();
-            message.text = "Happy Birthday Tasa! Wishing you a wonderful life ahead.";
-            message.lang = 'en-US';
-            message.rate = 0.9; // Shobdo boler goti
-            message.pitch = 1.2; // Voice tone (ektu sweet shonanor jonno)
-            window.speechSynthesis.speak(message);
+            // 1. Text to Speech Logic
+            if ('speechSynthesis' in window) {
+                const voiceMsg = new SpeechSynthesisUtterance();
+                voiceMsg.text = "Happy Birthday Tasa! Wishing you a very special day.";
+                voiceMsg.lang = 'en-US';
+                voiceMsg.rate = 0.8; // Goti (ektu slow hole shunte bhalo lage)
+                voiceMsg.pitch = 1.1; // Tone
+                window.speechSynthesis.speak(voiceMsg);
+            }
 
-            // 2. UI change
+            // 2. Display Message change
             document.getElementById('msg').innerHTML = '💖 <b>Tasa</b>, You are the most special person! 💖';
             
-            // 3. Extra Fireworks
-            for(let i=0; i<8; i++) {
-                setTimeout(createFirework, i * 300);
+            // 3. Extra Fireworks on Click
+            for(let i=0; i<10; i++) {
+                setTimeout(createFirework, i * 200);
             }
         }
 
-        // --- Fireworks Logic ---
+        // --- Fireworks Animation ---
         const fwCanvas = document.getElementById('fireworks');
         const fwCtx = fwCanvas.getContext('2d');
         fwCanvas.width = window.innerWidth;
@@ -129,10 +131,10 @@
             });
             requestAnimationFrame(animateFireworks);
         }
-        setInterval(createFirework, 1000);
+        setInterval(createFirework, 900);
         animateFireworks();
 
-        // --- Floating Balloons ---
+        // --- Floating Elements ---
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
