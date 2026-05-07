@@ -15,12 +15,12 @@
     }
 
     h1 {
-      font-size: 45px;
       margin-top: 40px;
+      font-size: 45px;
     }
 
     .card {
-      background: rgba(0,0,0,0.55);
+      background: rgba(0,0,0,0.6);
       width: 85%;
       margin: auto;
       margin-top: 40px;
@@ -40,9 +40,7 @@
       cursor: pointer;
     }
 
-    .btn:hover {
-      background: orange;
-    }
+    .btn:hover { background: orange; }
 
     /* 🎈 Balloons */
     .balloon {
@@ -61,14 +59,14 @@
     /* ❤️ Hearts */
     .heart {
       position: absolute;
-      color: pink;
       font-size: 20px;
+      color: pink;
       animation: rise 6s infinite;
     }
 
     @keyframes rise {
-      0% { transform: translateY(100vh) scale(0.5); opacity: 1; }
-      100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+      0% { transform: translateY(100vh); opacity: 1; }
+      100% { transform: translateY(-10vh); opacity: 0; }
     }
 
     /* 🎆 Fireworks */
@@ -86,13 +84,12 @@
       100% { transform: scale(12); opacity: 0; }
     }
 
-    /* 🎁 Gift Box */
+    /* 🎁 Gift */
     .gift {
       font-size: 60px;
       cursor: pointer;
-      margin-top: 20px;
-      display: inline-block;
       animation: bounce 1.5s infinite;
+      margin-top: 15px;
     }
 
     @keyframes bounce {
@@ -102,38 +99,38 @@
 
     #msg {
       display: none;
-      margin-top: 15px;
-      font-size: 18px;
+      margin-top: 10px;
       color: gold;
+      font-size: 18px;
     }
   </style>
 </head>
 
 <body>
 
-<!-- 🎵 Music (YouTube background music) -->
+<!-- 🎵 Background Music -->
 <iframe width="0" height="0"
 src="https://www.youtube.com/embed/2Vv-BfVoq4g?autoplay=1&loop=1&playlist=2Vv-BfVoq4g"
 frameborder="0" allow="autoplay"></iframe>
 
 <!-- 🎈 Balloons -->
 <div class="balloon" style="left:10%; background:red;"></div>
-<div class="balloon" style="left:25%; background:yellow;"></div>
-<div class="balloon" style="left:40%; background:blue;"></div>
-<div class="balloon" style="left:60%; background:green;"></div>
-<div class="balloon" style="left:80%; background:pink;"></div>
+<div class="balloon" style="left:30%; background:yellow;"></div>
+<div class="balloon" style="left:50%; background:blue;"></div>
+<div class="balloon" style="left:70%; background:green;"></div>
 
 <!-- ❤️ Hearts -->
 <div class="heart" style="left:20%;">❤️</div>
 <div class="heart" style="left:50%;">💖</div>
-<div class="heart" style="left:70%;">❤️</div>
+<div class="heart" style="left:80%;">❤️</div>
 
 <!-- 🎆 Fireworks -->
 <div class="firework" style="top:20%; left:20%;"></div>
-<div class="firework" style="top:30%; left:70%;"></div>
-<div class="firework" style="top:50%; left:40%;"></div>
+<div class="firework" style="top:40%; left:70%;"></div>
+<div class="firework" style="top:60%; left:40%;"></div>
 
 <div class="card">
+
   <h1>🎂 Happy Birthday Tasa 🎂</h1>
 
   <p>Dear Tasa ❤️</p>
@@ -147,20 +144,36 @@ frameborder="0" allow="autoplay"></iframe>
 
   <!-- 🎁 Gift -->
   <div class="gift" onclick="openGift()">🎁</div>
-
-  <div id="msg">🎉 Surprise! You are amazing Tasa ❤️ Happy Birthday! 🎂</div>
+  <div id="msg">🎉 Surprise! Happy Birthday Tasa ❤️</div>
 
   <br>
 
-  <button class="btn" onclick="alert('🎂 Happy Birthday Tasa ❤️')">
-    Open Surprise
+  <button class="btn" onclick="speakWish()">
+    🔊 Play Voice Greeting
   </button>
+
 </div>
 
 <script>
 function openGift(){
   document.getElementById("msg").style.display = "block";
 }
+
+/* 🎤 Voice Greeting */
+function speakWish(){
+  let msg = new SpeechSynthesisUtterance();
+  msg.text = "Happy Birthday Tasa. Wishing you endless happiness, love and success. May your smile always shine brighter than stars.";
+  msg.lang = "en-US";
+  msg.rate = 0.9;
+  speechSynthesis.speak(msg);
+}
+
+/* 🎤 Auto play voice on load */
+window.onload = function(){
+  setTimeout(() => {
+    speakWish();
+  }, 1500);
+};
 </script>
 
 </body>
