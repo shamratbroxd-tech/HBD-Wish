@@ -31,7 +31,7 @@
     }
 
     .btn {
-      margin-top: 20px;
+      margin-top: 15px;
       padding: 12px 25px;
       background: gold;
       border: none;
@@ -72,8 +72,8 @@
     /* 🎆 Fireworks */
     .firework {
       position: absolute;
-      width: 5px;
-      height: 5px;
+      width: 6px;
+      height: 6px;
       background: yellow;
       border-radius: 50%;
       animation: explode 2s infinite;
@@ -89,7 +89,7 @@
       font-size: 60px;
       cursor: pointer;
       animation: bounce 1.5s infinite;
-      margin-top: 15px;
+      margin-top: 10px;
     }
 
     @keyframes bounce {
@@ -115,19 +115,20 @@ frameborder="0" allow="autoplay"></iframe>
 
 <!-- 🎈 Balloons -->
 <div class="balloon" style="left:10%; background:red;"></div>
-<div class="balloon" style="left:30%; background:yellow;"></div>
-<div class="balloon" style="left:50%; background:blue;"></div>
-<div class="balloon" style="left:70%; background:green;"></div>
+<div class="balloon" style="left:25%; background:yellow;"></div>
+<div class="balloon" style="left:40%; background:blue;"></div>
+<div class="balloon" style="left:60%; background:green;"></div>
+<div class="balloon" style="left:80%; background:pink;"></div>
 
 <!-- ❤️ Hearts -->
 <div class="heart" style="left:20%;">❤️</div>
 <div class="heart" style="left:50%;">💖</div>
-<div class="heart" style="left:80%;">❤️</div>
+<div class="heart" style="left:75%;">❤️</div>
 
 <!-- 🎆 Fireworks -->
 <div class="firework" style="top:20%; left:20%;"></div>
-<div class="firework" style="top:40%; left:70%;"></div>
-<div class="firework" style="top:60%; left:40%;"></div>
+<div class="firework" style="top:35%; left:70%;"></div>
+<div class="firework" style="top:55%; left:40%;"></div>
 
 <div class="card">
 
@@ -148,18 +149,19 @@ frameborder="0" allow="autoplay"></iframe>
 
   <br>
 
-  <button class="btn" onclick="speakWish()">
-    🔊 Play Voice Greeting
+  <button class="btn" onclick="startExperience()">
+    🎂 Start Surprise
   </button>
 
 </div>
 
 <script>
+
 function openGift(){
   document.getElementById("msg").style.display = "block";
 }
 
-/* 🎤 Voice Greeting */
+/* 🎤 Voice Greeting (WORKING FIX) */
 function speakWish(){
   let msg = new SpeechSynthesisUtterance();
   msg.text = "Happy Birthday Tasa. Wishing you endless happiness, love and success. May your smile always shine brighter than stars.";
@@ -168,12 +170,12 @@ function speakWish(){
   speechSynthesis.speak(msg);
 }
 
-/* 🎤 Auto play voice on load */
-window.onload = function(){
-  setTimeout(() => {
-    speakWish();
-  }, 1500);
-};
+/* 🚀 Start everything on click */
+function startExperience(){
+  speakWish();
+  openGift();
+}
+
 </script>
 
 </body>
