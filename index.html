@@ -68,29 +68,30 @@
         <h1>Happy Birthday</h1>
         <h2>Dear Tasa ❤️</h2>
         <p id="msg">Wishing you endless happiness, love, and success. May your smile always shine brighter than the stars ✨</p>
-        <p style="margin-top: 10px; font-weight: 600;">📅 May 5</p>
         <button onclick="startSurprise()">Open Surprise 🎁</button>
     </div>
 
-    <audio id="birthdayMusic" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-    </audio>
-
     <script>
-        // Start Music and Change Message
+        // AI Voice (Text to Speech) Function
         function startSurprise() {
-            const music = document.getElementById('birthdayMusic');
-            music.play().catch(error => console.log("Playback failed:", error));
+            // 1. Voice logic
+            const message = new SpeechSynthesisUtterance();
+            message.text = "Happy Birthday Tasa! Wishing you a wonderful life ahead.";
+            message.lang = 'en-US';
+            message.rate = 0.9; // Shobdo boler goti
+            message.pitch = 1.2; // Voice tone (ektu sweet shonanor jonno)
+            window.speechSynthesis.speak(message);
+
+            // 2. UI change
+            document.getElementById('msg').innerHTML = '💖 <b>Tasa</b>, You are the most special person! 💖';
             
-            document.getElementById('msg').innerHTML = '💖 You are the most special person in my life! Wishing you a day as beautiful as you are. 💖';
-            
-            // Trigger extra fireworks on click
-            for(let i=0; i<5; i++) {
-                setTimeout(createFirework, i * 200);
+            // 3. Extra Fireworks
+            for(let i=0; i<8; i++) {
+                setTimeout(createFirework, i * 300);
             }
         }
 
-        // Fireworks Effect
+        // --- Fireworks Logic ---
         const fwCanvas = document.getElementById('fireworks');
         const fwCtx = fwCanvas.getContext('2d');
         fwCanvas.width = window.innerWidth;
@@ -128,33 +129,10 @@
             });
             requestAnimationFrame(animateFireworks);
         }
-        setInterval(createFirework, 800);
+        setInterval(createFirework, 1000);
         animateFireworks();
 
-        // Emoji Rain (Kids/Balloons)
-        setInterval(()=>{
-            const kid = document.createElement('div');
-            kid.innerHTML = Math.random() > 0.5 ? '🎈' : '🎂';
-            kid.style.position='fixed';
-            kid.style.left=Math.random()*100+'vw';
-            kid.style.top='-50px';
-            kid.style.fontSize='28px';
-            kid.style.zIndex='999';
-            kid.style.transition = 'transform 0.2s';
-            document.body.appendChild(kid);
-            
-            let pos = -50;
-            const fall = setInterval(()=>{
-                pos += 3;
-                kid.style.top = pos+'px';
-                if(pos > window.innerHeight){
-                    clearInterval(fall);
-                    kid.remove();
-                }
-            }, 30);
-        }, 1000);
-
-        // Floating Bubbles/Balloons
+        // --- Floating Balloons ---
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
@@ -188,7 +166,6 @@
         }
         animateBalloons();
 
-        // Handle Window Resize
         window.onresize = () => {
             fwCanvas.width = canvas.width = window.innerWidth;
             fwCanvas.height = canvas.height = window.innerHeight;
